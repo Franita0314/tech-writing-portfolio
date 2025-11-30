@@ -76,10 +76,6 @@ python hello.py goodbye Alice --formal
 > **💡 小贴士**：
 > 如果你的程序只有一个 `@app.command()`，在运行时**不需要**输入子命令名称，直接传参即可。但为了扩展性，建议养成使用子命令的习惯。
 
-<br>
-
-[⬆️ 回到目录](#目录-table-of-contents)
-
 ---
 
 <a id="chapter-2"></a>
@@ -137,14 +133,11 @@ python params.py signup "LiSi" --age 22 -v
 > **⚠️ 特别注意：下划线与短横线**
 >
 > 细心的你可能发现了：
+> 
 > * Python 代码里写的是 `is_vip` (下划线)。
 > * 命令行里用的是 `--is-vip` (短横线)。
 >
 > **这是 CLI 工具的标准规范**。Typer 会自动帮你完成这个转换，所以在定义函数名或参数名时，请放心使用 Python 风格的下划线，不用担心命令行里不好看。
-
-<br>
-
-[⬆️ 回到目录](#目录-table-of-contents)
 
 ---
 
@@ -184,13 +177,10 @@ python interaction.py delete-user Bob
 ```
 
 **交互体验：**
+>
 * 系统会显示红色警告。
 * 然后询问：`你确定要继续吗？ [y/N]:`
 * 如果你直接回车或输入 `n`，程序会直接退出，**不会**执行删除逻辑。只有输入 `y` 才会看到绿色的成功提示。
-
-<br>
-
-[⬆️ 回到目录](#目录-table-of-contents)
 
 ---
 
@@ -231,18 +221,16 @@ python robust.py read-config "ghost.json"
 ```
 
 **观察结果：**
+>
 * 你只会看到一行红色的 `错误: 找不到文件 'ghost.json'`。
 * **没有** 任何 Python 报错堆栈信息。
 
 > **🛠️ 退出代码检查**：
 > 在自动化流水线 (CI/CD) 中，非 0 的退出代码非常重要。
+>
 > * **Windows CMD**: 运行 `echo %ERRORLEVEL%` -> 输出 `1`
 > * **PowerShell**: 运行 `echo $LASTEXITCODE` -> 输出 `1`
 > * **Linux/Mac**: 运行 `echo $?` -> 输出 `1`
-
-<br>
-
-[⬆️ 回到目录](#目录-table-of-contents)
 
 ---
 
@@ -311,11 +299,6 @@ python main.py --env prod db migrate
 # 先输出: 🚀 生产环境连接中... (来自 main.py)
 # 再输出: 正在 [prod] 环境下执行... (来自 db.py)
 ```
-
-<br>
-
-[⬆️ 回到目录](#目录-table-of-contents)
-
 ---
 
 <a id="chapter-6"></a>
@@ -392,11 +375,6 @@ python todo.py list
 # 4. 完成 ID 为 0 的任务
 python todo.py complete 0
 ```
-
-<br>
-
-[⬆️ 回到目录](#目录-table-of-contents)
-
 ---
 
 <a id="chapter-7"></a>
@@ -406,6 +384,7 @@ python todo.py complete 0
 
 ### 7.1 依赖管理的避坑指南 (Requirements)
 很多教程会让你用 `pip freeze > requirements.txt`，**千万别直接这么做。**
+>
 * **坑点 1**：它会把你电脑里几百个无关的库（比如爬虫库、数据分析库）全列出来，导致项目臃肿。
 * **坑点 2**：有些人推荐用 `pipreqs` 自动扫描，但由于网络原因，它经常会卡死或超时。
 
@@ -438,10 +417,6 @@ def test_add_task():
 pytest
 ```
 看到绿色的 `passed`，就说明你的工具已经具备了发布质量！
-
-<br>
-
-[⬆️ 回到目录](#目录-table-of-contents)
 
 ---
 
