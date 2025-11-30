@@ -1,0 +1,15 @@
+site_name: Franita的技术文档作品集
+site_url: https://Franita.github.io/tech-writing-portfolio/
+theme:
+  name: material
+  language: zh # 设置为中文
+  features:
+    - navigation.tabs # 顶部导航栏模式
+    - navigation.sections
+    - content.code.copy # 代码块自带复制按钮
+
+# 这里是你的目录结构配置
+nav:
+  - 首页: index.md
+  - Cat API: api-reference/README.md
+  - Typer CLI: typer-smallguide/README.md

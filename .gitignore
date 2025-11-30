@@ -1,0 +1,10 @@
+# 忽略 mkdocs 生成的构建目录
+site/
+
+# 忽略 Python 的缓存
+__pycache__/
+*.pyc
+
+# 忽略依赖库安装目录 (如果有)
+venv/
+.env
