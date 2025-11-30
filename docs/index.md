@@ -26,7 +26,7 @@
 
 ## 🛠 技能栈 (Skills)
 * **Writing**: Markdown, Technical English, Simplified Chinese
-* **Development**: Python, Git, GitHub Actions, REST APIs
+* **Development**: Python, Git, GitHub Actions, REST APIs, Mkdocs
 * **Tools**: VS Code, Postman/cURL
 
 ---
