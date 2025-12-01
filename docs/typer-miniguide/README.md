@@ -86,7 +86,18 @@ python hello.py goodbye Alice --formal
 * **参数 (Argument)** 就像**主食**：你必须告诉服务员吃什么（如“牛肉面”）。如果没说，服务员无法下单（程序报错）。
 * **选项 (Option)** 就像**口味备注**：属于额外需求（如“不要香菜”）。如果你不说，厨师就按标准做（使用默认值）。
 
-### 2.1 代码实战 (`params.py`)
+### 2.1 概念对比表
+
+在开始写代码前，我们需要搞清楚这两者的核心区别：
+
+| 特性 | 参数 (Argument) | 选项 (Option) |
+| :---: | :---: | :---: |
+| **必需性** | ✅ **必填** (不填会报错) | ⬜ **选填** (有默认值) |
+| **定义方式** | `name: str` | `age: int = 18` |
+| **命令行写法**| 直接跟在命令后 (位置敏感) | `--name` 或 `-n` (位置灵活) |
+| **生活类比** | 主食 (米饭/面条) | 备注 (微辣/少糖) |
+
+### 2.2 代码实战 (`params.py`)
 
 ```python
 import typer
@@ -115,7 +126,7 @@ if __name__ == "__main__":
     app()
 ```
 
-### 2.2 运行验证与关键规范
+### 2.3 运行验证与关键规范
 
 请尝试以下命令，观察参数是如何被解析的：
 
@@ -285,10 +296,25 @@ def migrate(ctx: typer.Context):
     print(f"正在 [{env}] 环境下执行数据库迁移...")
 ```
 
-### 5.3 运行验证
+### 5.3 数据流向可视化
+
+为了理解数据是如何从主程序“流”向子命令的，请看下图：
+
+```mermaid
+graph TD
+    User([用户输入: --env prod]) -->|1. 拦截参数| Main[主程序 Callback]
+    Main -->|2. 将 'prod' 装入| Backpack{Context 上下文背包}
+    Backpack -->|3. 携带背包传递| Sub[子命令: db migrate]
+    Sub -->|4. 从背包取出配置| Logic[执行: 生产环境迁移]
+    
+    style Backpack fill:#f9f,stroke:#333,stroke-width:2px
+    style User fill:#bbf,stroke:#333
+    style Logic fill:#bfb,stroke:#333
+```
+
+### 5.4 运行验证
 
 感受数据如何在模块间流动：
-
 ```bash
 # 1. 默认环境
 python main.py db migrate
@@ -306,7 +332,19 @@ python main.py --env prod db migrate
 
 我们将运用前面所学，构建一个包含增删查改 (CRUD) 的 **To-Do List CLI**。
 
-### 6.1 完整代码 (`todo.py`)
+### 6.1 项目结构预览
+
+在编写代码之前，让我们先看一下最终的文件结构：
+
+```text
+todo-app/
+├── todo.py            # 主程序入口 (包含所有命令逻辑)
+├── todo_db.json       # 数据存储文件 (自动生成)
+├── test_todo.py       # 自动化测试脚本
+└── requirements.txt   # 项目依赖清单
+```
+
+### 6.2 完整代码 (`todo.py`)
 
 ```python
 import typer
@@ -358,10 +396,9 @@ if __name__ == "__main__":
     app()
 ```
 
-### 6.2 运行验证
+### 6.3 运行验证
 
 像真正的用户一样使用你的工具：
-
 ```bash
 # 1. 添加任务 (设为高优先级)
 python todo.py add "写完项目文档" -p 3
