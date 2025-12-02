@@ -8,7 +8,7 @@
 
 ### 1. [📘 Python CLI 实战手册](./docs/typer-miniguide/README.md)
 > **类型**：Tutorial / How-to Guide (教程与指南)  
-> **技术栈**：Python, Typer, Markdown, Pytest
+> **技术栈**：Python, Typer, Markdown, Pytest, Mkdocs
 >
 > 这是一个面向 Python 开发者的完整实战指南。我记录了如何从零开始构建一个符合工程化标准的命令行工具。
 >

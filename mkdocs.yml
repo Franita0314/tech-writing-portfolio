@@ -13,7 +13,7 @@ theme:
 nav:
   - 首页: index.md
   - Cat API: api-reference/README.md
-  - Typer CLI: typer-smallguide/README.md
+  - Typer CLI: typer-miniguide/README.md
 
 markdown_extensions:
   - pymdownx.superfences:
