@@ -1,0 +1,1577 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://Franita0314.github.io/tech-writing-portfolio/typer-miniguide/">
+      
+      
+        <link rel="prev" href="../api-reference/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Typer CLI - Franita的技术文档作品集</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python-typer" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="Franita的技术文档作品集" class="md-header__button md-logo" aria-label="Franita的技术文档作品集" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Franita的技术文档作品集
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Typer CLI
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api-reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Cat API
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Typer CLI
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Franita的技术文档作品集" class="md-nav__button md-logo" aria-label="Franita的技术文档作品集" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Franita的技术文档作品集
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cat API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Typer CLI
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Typer CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目录 (Table of Contents)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 快速入门 (Quick Start)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 快速入门 (Quick Start)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 环境准备
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-hello-world-hellopy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Hello World (hello.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 运行验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-arguments-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 核心机制：Arguments &amp; Options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 核心机制：Arguments &amp; Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 概念对比表
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-paramspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 代码实战 (params.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 运行验证与关键规范
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-dx-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 提升体验 (DX &amp; Interaction)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 提升体验 (DX &amp; Interaction)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-interactionpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 危险操作确认 (interaction.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 运行验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-robustness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 健壮性 (Robustness)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 健壮性 (Robustness)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-robustpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 优雅退出 (robust.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 运行验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-context-subcommands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 进阶架构：Context 与 Subcommands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 进阶架构：Context 与 Subcommands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 目录结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 核心代码逻辑
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 数据流向可视化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 运行验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-case-study" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 综合案例 (Case Study)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 综合案例 (Case Study)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 项目结构预览
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-todopy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 完整代码 (todo.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 运行验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 测试与发布 (Distribution)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 测试与发布 (Distribution)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 依赖管理的避坑指南 (Requirements)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 自动化测试
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目录 (Table of Contents)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-quick-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 快速入门 (Quick Start)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 快速入门 (Quick Start)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 环境准备
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-hello-world-hellopy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Hello World (hello.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 运行验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-arguments-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 核心机制：Arguments &amp; Options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 核心机制：Arguments &amp; Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 概念对比表
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-paramspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 代码实战 (params.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 运行验证与关键规范
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-dx-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 提升体验 (DX &amp; Interaction)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 提升体验 (DX &amp; Interaction)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-interactionpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 危险操作确认 (interaction.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 运行验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-robustness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 健壮性 (Robustness)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 健壮性 (Robustness)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-robustpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 优雅退出 (robust.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 运行验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-context-subcommands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 进阶架构：Context 与 Subcommands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 进阶架构：Context 与 Subcommands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 目录结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 核心代码逻辑
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 数据流向可视化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 运行验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-case-study" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 综合案例 (Case Study)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 综合案例 (Case Study)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 项目结构预览
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-todopy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 完整代码 (todo.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 运行验证
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 测试与发布 (Distribution)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 测试与发布 (Distribution)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 依赖管理的避坑指南 (Requirements)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 自动化测试
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="python-typer">从脚本到工具：Python Typer 极简实战指南</h1>
+<p><img alt="Python Version" src="https://img.shields.io/badge/python-3.6%2B-blue" />
+<img alt="Library" src="https://img.shields.io/badge/lib-Typer-green" />
+<img alt="Status" src="https://img.shields.io/badge/status-Best_Practices-orange" /></p>
+<blockquote>
+<p><strong>写在前面</strong>：
+很多人写 Python 脚本只用来跑一次性任务，一旦功能复杂，代码就变得难以维护。本文档旨在通过一个轻量级的 <strong>To-Do List</strong> 案例，演示如何利用 <a href="https://typer.tiangolo.com/">Typer</a> 库，将零散的脚本重构为<strong>结构清晰、交互友好、可测试</strong>的标准命令行工具 (CLI)。</p>
+<p><em>核心价值：参数规范、用户交互、错误处理、项目结构与基础测试。</em></p>
+</blockquote>
+<p><a id="toc"></a></p>
+<h2 id="table-of-contents">目录 (Table of Contents)</h2>
+<ol>
+<li><a href="#chapter-1">快速入门：Quick Start</a></li>
+<li><a href="#chapter-2">核心机制：Arguments 与 Options</a></li>
+<li><a href="#chapter-3">提升体验：DX 与交互体验</a></li>
+<li><a href="#chapter-4">健壮性：Robustness</a></li>
+<li><a href="#chapter-5">进阶架构：Context 与 Subcommands</a></li>
+<li><a href="#chapter-6">综合案例：构建 To-Do List 管理器</a></li>
+<li><a href="#chapter-7">测试与发布：工程化的最后一公里</a></li>
+</ol>
+<hr />
+<p><a id="chapter-1"></a></p>
+<h2 id="1-quick-start">1. 快速入门 (Quick Start)</h2>
+<p>Typer 的核心哲学是 <strong>“代码即文档”</strong>。利用 Python 3.6+ 的类型提示 (Type Hints)，我们无需编写复杂的参数解析逻辑。</p>
+<h3 id="11">1.1 环境准备</h3>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">&quot;typer[all]&quot;</span>
+</code></pre></div>
+<h3 id="12-hello-world-hellopy">1.2 Hello World (<code>hello.py</code>)</h3>
+<p>我们先写一个最简单的打招呼程序，包含两个子命令。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">typer</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Typer</span><span class="p">()</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">hello</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;最简单的打招呼命令&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">goodbye</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">formal</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    道别命令。</span>
+<span class="sd">    --formal: 这是一个可选的开关 (Flag)，用于切换正式语气。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">formal</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Goodbye, Mr./Ms. </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">. Have a good day.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bye </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="13">1.3 运行验证</h3>
+<p>Typer 会自动把函数参数转化为命令行参数：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. 运行 hello 命令</span>
+python<span class="w"> </span>hello.py<span class="w"> </span>hello<span class="w"> </span>World
+<span class="c1"># 输出: Hello World</span>
+
+<span class="c1"># 2. 运行 goodbye 命令（带 Flag）</span>
+python<span class="w"> </span>hello.py<span class="w"> </span>goodbye<span class="w"> </span>Alice<span class="w"> </span>--formal
+<span class="c1"># 输出: Goodbye, Mr./Ms. Alice. Have a good day.</span>
+</code></pre></div>
+<blockquote>
+<p><strong>💡 小贴士</strong>：
+如果你的程序只有一个 <code>@app.command()</code>，在运行时<strong>不需要</strong>输入子命令名称，直接传参即可。但为了扩展性，建议养成使用子命令的习惯。</p>
+</blockquote>
+<hr />
+<p><a id="chapter-2"></a></p>
+<h2 id="2-arguments-options">2. 核心机制：Arguments &amp; Options</h2>
+<p>很多新手容易混淆“参数”和“选项”。我们可以用<strong>“去餐厅点餐”</strong>来类比：</p>
+<ul>
+<li><strong>参数 (Argument)</strong> 就像<strong>主食</strong>：你必须告诉服务员吃什么（如“牛肉面”）。如果没说，服务员无法下单（程序报错）。</li>
+<li><strong>选项 (Option)</strong> 就像<strong>口味备注</strong>：属于额外需求（如“不要香菜”）。如果你不说，厨师就按标准做（使用默认值）。</li>
+</ul>
+<h3 id="21">2.1 概念对比表</h3>
+<p>在开始写代码前，我们需要搞清楚这两者的核心区别：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">特性</th>
+<th style="text-align: center;">参数 (Argument)</th>
+<th style="text-align: center;">选项 (Option)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>必需性</strong></td>
+<td style="text-align: center;">✅ <strong>必填</strong> (不填会报错)</td>
+<td style="text-align: center;">⬜ <strong>选填</strong> (有默认值)</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>定义方式</strong></td>
+<td style="text-align: center;"><code>name: str</code></td>
+<td style="text-align: center;"><code>age: int = 18</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>命令行写法</strong></td>
+<td style="text-align: center;">直接跟在命令后 (位置敏感)</td>
+<td style="text-align: center;"><code>--name</code> 或 <code>-n</code> (位置灵活)</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>生活类比</strong></td>
+<td style="text-align: center;">主食 (米饭/面条)</td>
+<td style="text-align: center;">备注 (微辣/少糖)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-paramspy">2.2 代码实战 (<code>params.py</code>)</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">typer</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Typer</span><span class="p">()</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">signup</span><span class="p">(</span>
+    <span class="c1"># 1. 必填参数 (主食): 没有默认值</span>
+    <span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+
+    <span class="c1"># 2. 选项 (备注): 有默认值</span>
+    <span class="c1"># 命令行里可以用 --age 25 来修改</span>
+    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">18</span><span class="p">,</span> 
+
+    <span class="c1"># 3. 进阶定制: 使用 typer.Option</span>
+    <span class="c1"># 给选项起个短别名 (-v)，并添加帮助文档</span>
+    <span class="n">is_vip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;--vip&quot;</span><span class="p">,</span> <span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;是否为 VIP 用户&quot;</span><span class="p">)</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;模拟用户注册流程&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;正在注册: </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2"> | 年龄: </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">is_vip</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✨ 尊贵的 VIP 用户，欢迎！&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="23">2.3 运行验证与关键规范</h3>
+<p>请尝试以下命令，观察参数是如何被解析的：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. 基础调用（使用默认值）</span>
+python<span class="w"> </span>params.py<span class="w"> </span>signup<span class="w"> </span><span class="s2">&quot;ZhangSan&quot;</span>
+<span class="c1"># 输出: 正在注册: ZhangSan | 年龄: 18</span>
+
+<span class="c1"># 2. 修改选项（使用别名 -v）</span>
+python<span class="w"> </span>params.py<span class="w"> </span>signup<span class="w"> </span><span class="s2">&quot;LiSi&quot;</span><span class="w"> </span>--age<span class="w"> </span><span class="m">22</span><span class="w"> </span>-v
+<span class="c1"># 输出: ... | 年龄: 22</span>
+<span class="c1"># 输出: ✨ 尊贵的 VIP 用户，欢迎！</span>
+</code></pre></div>
+<blockquote>
+<p><strong>⚠️ 特别注意：下划线与短横线</strong></p>
+<p>细心的你可能发现了：</p>
+<ul>
+<li>Python 代码里写的是 <code>is_vip</code> (下划线)。</li>
+<li>命令行里用的是 <code>--is-vip</code> (短横线)。</li>
+</ul>
+<p><strong>这是 CLI 工具的标准规范</strong>。Typer 会自动帮你完成这个转换，所以在定义函数名或参数名时，请放心使用 Python 风格的下划线，不用担心命令行里不好看。</p>
+</blockquote>
+<hr />
+<p><a id="chapter-3"></a></p>
+<h2 id="3-dx-interaction">3. 提升体验 (DX &amp; Interaction)</h2>
+<p>一个好的工具不仅能跑，还要好用。我们要学会“各种颜色输出”和“关键时刻的确认”。</p>
+<h3 id="31-interactionpy">3.1 危险操作确认 (<code>interaction.py</code>)</h3>
+<p>当用户执行删除操作时，直接删掉是不负责任的。Typer 提供了 <code>confirm</code> 机制。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">typer</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Typer</span><span class="p">()</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">delete_user</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="c1"># 1. 输出红色警告 (使用 secho)</span>
+    <span class="n">typer</span><span class="o">.</span><span class="n">secho</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;警告：你即将删除用户 [</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">] ！&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="n">typer</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">RED</span><span class="p">,</span> <span class="n">bold</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># 2. 弹出确认框 [y/N]</span>
+    <span class="c1"># abort=True 表示如果用户选 No，直接终止程序</span>
+    <span class="n">typer</span><span class="o">.</span><span class="n">confirm</span><span class="p">(</span><span class="s2">&quot;你确定要继续吗？&quot;</span><span class="p">,</span> <span class="n">abort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">typer</span><span class="o">.</span><span class="n">secho</span><span class="p">(</span><span class="s2">&quot;已执行删除。&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="n">typer</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">GREEN</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="32">3.2 运行验证</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 运行命令</span>
+python<span class="w"> </span>interaction.py<span class="w"> </span>delete-user<span class="w"> </span>Bob
+</code></pre></div>
+<p><strong>交互体验：</strong></p>
+<blockquote>
+<ul>
+<li>系统会显示红色警告。</li>
+<li>然后询问：<code>你确定要继续吗？ [y/N]:</code></li>
+<li>如果你直接回车或输入 <code>n</code>，程序会直接退出，<strong>不会</strong>执行删除逻辑。只有输入 <code>y</code> 才会看到绿色的成功提示。</li>
+</ul>
+</blockquote>
+<hr />
+<p><a id="chapter-4"></a></p>
+<h2 id="4-robustness">4. 健壮性 (Robustness)</h2>
+<p>脚本和产品的区别在于：脚本报错时会把 Python 难看的 Traceback 甩给用户，而产品会优雅地告诉用户“发生了什么”。</p>
+<h3 id="41-robustpy">4.1 优雅退出 (<code>robust.py</code>)</h3>
+<p>以读取文件为例，我们应该预判错误。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">typer</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Typer</span><span class="p">()</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_config</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="c1"># Fail Fast: 在逻辑开始前先检查</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="c1"># 将错误信息输出到 stderr (标准错误流)</span>
+        <span class="n">typer</span><span class="o">.</span><span class="n">secho</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;错误: 找不到文件 &#39;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="n">typer</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">RED</span><span class="p">,</span> <span class="n">err</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="c1"># 使用 Exit(code=1) 告诉操作系统这是非正常退出</span>
+        <span class="k">raise</span> <span class="n">typer</span><span class="o">.</span><span class="n">Exit</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;正在读取配置文件...&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="42">4.2 运行验证</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 输入一个不存在的文件名</span>
+python<span class="w"> </span>robust.py<span class="w"> </span>read-config<span class="w"> </span><span class="s2">&quot;ghost.json&quot;</span>
+</code></pre></div>
+<p><strong>观察结果：</strong></p>
+<blockquote>
+<ul>
+<li>你只会看到一行红色的 <code>错误: 找不到文件 'ghost.json'</code>。</li>
+<li><strong>没有</strong> 任何 Python 报错堆栈信息。</li>
+</ul>
+<p><strong>🛠️ 退出代码检查</strong>：
+在自动化流水线 (CI/CD) 中，非 0 的退出代码非常重要。</p>
+<ul>
+<li><strong>Windows CMD</strong>: 运行 <code>echo %ERRORLEVEL%</code> -&gt; 输出 <code>1</code></li>
+<li><strong>PowerShell</strong>: 运行 <code>echo $LASTEXITCODE</code> -&gt; 输出 <code>1</code></li>
+<li><strong>Linux/Mac</strong>: 运行 <code>echo $?</code> -&gt; 输出 <code>1</code></li>
+</ul>
+</blockquote>
+<hr />
+<p><a id="chapter-5"></a></p>
+<h2 id="5-context-subcommands">5. 进阶架构：Context 与 Subcommands</h2>
+<p>当项目变大时，我们需要把代码拆分到不同文件。这就涉及到了<strong>上下文 (Context)</strong> 的传递——就像接力赛一样，主程序把“配置”传给子程序。</p>
+<h3 id="51">5.1 目录结构</h3>
+<div class="highlight"><pre><span></span><code>/devops_tool
+    ├── main.py    (主入口：负责解析全局参数，如 --env)
+    └── db.py      (子模块：负责数据库操作)
+</code></pre></div>
+<h3 id="52">5.2 核心代码逻辑</h3>
+<p><strong>主程序 (<code>main.py</code>)：</strong>
+利用 <code>callback</code> 在子命令执行前拦截全局参数，并存入 <code>ctx.obj</code> 背包。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">typer</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">db</span> <span class="c1"># 导入子模块</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Typer</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_typer</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">app</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;db&quot;</span><span class="p">)</span> <span class="c1"># 挂载子命令组</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span> <span class="n">typer</span><span class="o">.</span><span class="n">Context</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span> <span class="s2">&quot;--env&quot;</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;DevOps 工具入口&quot;&quot;&quot;</span>
+    <span class="c1"># 把环境配置装进背包，传给下游</span>
+    <span class="n">ctx</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;env&quot;</span><span class="p">:</span> <span class="n">env</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">env</span> <span class="o">==</span> <span class="s2">&quot;prod&quot;</span><span class="p">:</span>
+        <span class="n">typer</span><span class="o">.</span><span class="n">secho</span><span class="p">(</span><span class="s2">&quot;🚀 生产环境连接中...&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="n">typer</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">MAGENTA</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">()</span>
+</code></pre></div>
+<p><strong>子模块 (<code>db.py</code>)：</strong>
+从 <code>ctx.obj</code> 背包里取出配置。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">typer</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Typer</span><span class="p">()</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">migrate</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span> <span class="n">typer</span><span class="o">.</span><span class="n">Context</span><span class="p">):</span>
+    <span class="c1"># 从背包里拿出 env</span>
+    <span class="n">env</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;env&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;正在 [</span><span class="si">{</span><span class="n">env</span><span class="si">}</span><span class="s2">] 环境下执行数据库迁移...&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="53">5.3 数据流向可视化</h3>
+<p>为了理解数据是如何从主程序“流”向子命令的，请看下图：</p>
+<pre class="mermaid"><code>graph TD
+    User([用户输入: --env prod]) --&gt;|1. 拦截参数| Main[主程序 Callback]
+    Main --&gt;|2. 将 'prod' 装入| Backpack{Context 上下文背包}
+    Backpack --&gt;|3. 携带背包传递| Sub[子命令: db migrate]
+    Sub --&gt;|4. 从背包取出配置| Logic[执行: 生产环境迁移]
+
+    style Backpack fill:#f9f,stroke:#333,stroke-width:2px
+    style User fill:#bbf,stroke:#333
+    style Logic fill:#bfb,stroke:#333</code></pre>
+<h3 id="54">5.4 运行验证</h3>
+<p>感受数据如何在模块间流动：
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. 默认环境</span>
+python<span class="w"> </span>main.py<span class="w"> </span>db<span class="w"> </span>migrate
+<span class="c1"># 输出: 正在 [dev] 环境下执行...</span>
+
+<span class="c1"># 2. 切换到生产环境 (注意 --env 的位置)</span>
+python<span class="w"> </span>main.py<span class="w"> </span>--env<span class="w"> </span>prod<span class="w"> </span>db<span class="w"> </span>migrate
+<span class="c1"># 先输出: 🚀 生产环境连接中... (来自 main.py)</span>
+<span class="c1"># 再输出: 正在 [prod] 环境下执行... (来自 db.py)</span>
+</code></pre></div></p>
+<hr />
+<p><a id="chapter-6"></a></p>
+<h2 id="6-case-study">6. 综合案例 (Case Study)</h2>
+<p>我们将运用前面所学，构建一个包含增删查改 (CRUD) 的 <strong>To-Do List CLI</strong>。</p>
+<h3 id="61">6.1 项目结构预览</h3>
+<p>在编写代码之前，让我们先看一下最终的文件结构：</p>
+<div class="highlight"><pre><span></span><code>todo-app/
+├── todo.py            # 主程序入口 (包含所有命令逻辑)
+├── todo_db.json       # 数据存储文件 (自动生成)
+├── test_todo.py       # 自动化测试脚本
+└── requirements.txt   # 项目依赖清单
+</code></pre></div>
+<h3 id="62-todopy">6.2 完整代码 (<code>todo.py</code>)</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">typer</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Typer</span><span class="p">()</span>
+<span class="n">DB_FILE</span> <span class="o">=</span> <span class="s2">&quot;todo_db.json&quot;</span>
+
+<span class="c1"># --- 数据处理层 ---</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_tasks</span><span class="p">():</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">DB_FILE</span><span class="p">):</span> <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">DB_FILE</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">save_tasks</span><span class="p">(</span><span class="n">tasks</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">DB_FILE</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># --- 命令层 ---</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">task</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">priority</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;-p&quot;</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;添加任务&quot;&quot;&quot;</span>
+    <span class="n">tasks</span> <span class="o">=</span> <span class="n">load_tasks</span><span class="p">()</span>
+    <span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">task</span><span class="p">,</span> <span class="s2">&quot;priority&quot;</span><span class="p">:</span> <span class="n">priority</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;pending&quot;</span><span class="p">})</span>
+    <span class="n">save_tasks</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+    <span class="n">typer</span><span class="o">.</span><span class="n">secho</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ 任务已添加: </span><span class="si">{</span><span class="n">task</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="n">typer</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">GREEN</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">show_all</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;--all&quot;</span><span class="p">)):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;查看任务列表&quot;&quot;&quot;</span>
+    <span class="n">tasks</span> <span class="o">=</span> <span class="n">load_tasks</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tasks</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">show_all</span> <span class="ow">and</span> <span class="n">t</span><span class="p">[</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;done&quot;</span><span class="p">:</span> <span class="k">continue</span>
+        <span class="n">color</span> <span class="o">=</span> <span class="n">typer</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">RED</span> <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="s2">&quot;priority&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">3</span> <span class="k">else</span> <span class="n">typer</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">WHITE</span>
+        <span class="n">typer</span><span class="o">.</span><span class="n">secho</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">t</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">t</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">complete</span><span class="p">(</span><span class="n">task_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;完成任务&quot;&quot;&quot;</span>
+    <span class="n">tasks</span> <span class="o">=</span> <span class="n">load_tasks</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">task_id</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tasks</span><span class="p">):</span>
+        <span class="n">typer</span><span class="o">.</span><span class="n">secho</span><span class="p">(</span><span class="s2">&quot;❌ ID 不存在&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="n">typer</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">RED</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">typer</span><span class="o">.</span><span class="n">Exit</span><span class="p">(</span><span class="n">code</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">tasks</span><span class="p">[</span><span class="n">task_id</span><span class="p">][</span><span class="s2">&quot;status&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;done&quot;</span>
+    <span class="n">save_tasks</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+    <span class="n">typer</span><span class="o">.</span><span class="n">secho</span><span class="p">(</span><span class="s2">&quot;🎉 任务完成！&quot;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="n">typer</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">GREEN</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="63">6.3 运行验证</h3>
+<p>像真正的用户一样使用你的工具：
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. 添加任务 (设为高优先级)</span>
+python<span class="w"> </span>todo.py<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;写完项目文档&quot;</span><span class="w"> </span>-p<span class="w"> </span><span class="m">3</span>
+
+<span class="c1"># 2. 添加普通任务</span>
+python<span class="w"> </span>todo.py<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;买咖啡&quot;</span>
+
+<span class="c1"># 3. 查看列表 (高优先级任务会显示红色)</span>
+python<span class="w"> </span>todo.py<span class="w"> </span>list
+
+<span class="c1"># 4. 完成 ID 为 0 的任务</span>
+python<span class="w"> </span>todo.py<span class="w"> </span><span class="nb">complete</span><span class="w"> </span><span class="m">0</span>
+</code></pre></div></p>
+<hr />
+<p><a id="chapter-7"></a></p>
+<h2 id="7-distribution">7. 测试与发布 (Distribution)</h2>
+<p>写完代码如果不给别人用，那只是自嗨。我们需要生成依赖清单，并编写自动化测试。</p>
+<h3 id="71-requirements">7.1 依赖管理的避坑指南 (Requirements)</h3>
+<p>很多教程会让你用 <code>pip freeze &gt; requirements.txt</code>，<strong>千万别直接这么做。</strong></p>
+<blockquote>
+<ul>
+<li><strong>坑点 1</strong>：它会把你电脑里几百个无关的库（比如爬虫库、数据分析库）全列出来，导致项目臃肿。</li>
+<li><strong>坑点 2</strong>：有些人推荐用 <code>pipreqs</code> 自动扫描，但由于网络原因，它经常会卡死或超时。</li>
+</ul>
+</blockquote>
+<p><strong>✅ 最佳实践</strong>：
+对于小型项目，<strong>手动创建</strong> <code>requirements.txt</code> 是最干净、最稳妥的：</p>
+<div class="highlight"><pre><span></span><code>typer[all]
+pytest
+</code></pre></div>
+<h3 id="72">7.2 自动化测试</h3>
+<p>使用 <code>pytest</code> 编写测试脚本 <code>test_todo.py</code>，模拟用户操作。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typer.testing</span><span class="w"> </span><span class="kn">import</span> <span class="n">CliRunner</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">todo</span><span class="w"> </span><span class="kn">import</span> <span class="n">app</span>
+
+<span class="n">runner</span> <span class="o">=</span> <span class="n">CliRunner</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_add_task</span><span class="p">():</span>
+    <span class="c1"># 模拟用户输入: python todo.py add &quot;买咖啡&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;add&quot;</span><span class="p">,</span> <span class="s2">&quot;买咖啡&quot;</span><span class="p">])</span>
+    <span class="k">assert</span> <span class="n">result</span><span class="o">.</span><span class="n">exit_code</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="k">assert</span> <span class="s2">&quot;任务已添加&quot;</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">stdout</span>
+</code></pre></div>
+<p>运行测试非常简单：
+<div class="highlight"><pre><span></span><code>pytest
+</code></pre></div>
+看到绿色的 <code>passed</code>，就说明你的工具已经具备了发布质量！</p>
+<hr />
+<p><em>文档整理: [Franita] | Powered by Typer &amp; Python</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "content.code.copy", "navigation.top"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
